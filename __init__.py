@@ -9,20 +9,17 @@ import sqlite3
 
 @app.route('/')
 def homepage():
-    conn = sqlite3.connect('database.sql')
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     cursor.execute('select * from Traffic')
     data = cursor.fetchall()
     
-    return render_template('index.html')
+    return render_template('homepage.html')
 
 @app.route('/rangeSearch', methods=["POST", "GET"])
 def rangeSearch():
     start = request.form['start']
     end = request.form['end']
-    # print(type(start))
-    # print(str(start))
-    # print(str(end))
     # startSplit = start.split("-")
     # endSplit = end.split("-")
     
@@ -35,13 +32,12 @@ def rangeSearch():
     todayYear = "2017"
     todayMonth = "12"
     todayDay = "24"
-    conn = sqlite3.connect('database.sql')
+    conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     # cursor.execute('select * from Traffic where Year >= {} and Year <= {} and Month >= {} and Month <= {} and Day >= {} and Day <= {} '.format(startYear, endYear, startMonth, endMonth, startDay, endDay))
     cursor.execute('select Hour, Minute from Traffic where Year = {} and Month = {} and Day = {}'.format(todayYear, todayMonth, todayDay))
 
     d = cursor.fetchall()
-    pprint(d)
     sortedData = sorted(d, key=lambda record: (record[0], record[1]))
     cleanedData = []
     for element in sortedData:
@@ -54,9 +50,7 @@ def rangeSearch():
         else:
             cleanedData.append(element)
             
-    # print(type(d))
-    pprint(cleanedData)
-    return render_template('year.html', data = json.dumps(cleanedData))
+    return render_template('homepage.html', data = json.dumps(cleanedData))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
