@@ -2,6 +2,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from pprint import pprint
+import json
 app = Flask(__name__)
 
 import sqlite3
@@ -55,8 +56,7 @@ def rangeSearch():
             
     # print(type(d))
     pprint(cleanedData)
-    print(len(cleanedData))
-    return render_template('year.html', data = cleanedData)
+    return render_template('year.html', data = json.dumps(cleanedData))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=80)
