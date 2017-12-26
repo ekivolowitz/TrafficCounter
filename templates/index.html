@@ -6,6 +6,12 @@
   <body style="background-color: rgb(221, 213, 213); font-family: Ariel; text-align: center">
 	  <h1><strong>Testing ground for a project I'm doing for DoIT!</strong></h1>
     <a href="/year">Year</a>
+    <p>Start Date and End Date don't currently work in the backend, but the UI is functional.</p>
+    <p>Click 'Submit Query' to see what an example histogram would look like.</p>
+    <p>This histogram currently represents traffic over the course of a single day. The x axis is in military time, and the y axis represents number of people that have entered the store</p>
+    <p>Next I'm going to implement selecting a day and generating the stats for that day.</p>
+    <p>I also need to set up an export function that will return a csv of the data that you're viewing. This is just a POC, and more functionality will come to it.</p>
+    <p><strong>If you have any recommendations or things you'd like to see, email me or fill out an issue on the github repistory (https://github.com/ekivolowitz/TrafficCounter)</strong></p>
     <form action="/rangeSearch" method="POST">
       Start Date
       <input type="date" name="start">
