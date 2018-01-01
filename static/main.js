@@ -2,7 +2,9 @@
 function formatData(data) {
     let count = {};
     for(let i = 0; i < data.length; ++i) {
-        let hourValue = data[i][0];
+        let hourValue = data[i][3];
+        console.log(hourValue);
+        
         hourValue in count ? count[hourValue] += 1 : count[hourValue] = 1;
     }
     let array = Object.values(count);
